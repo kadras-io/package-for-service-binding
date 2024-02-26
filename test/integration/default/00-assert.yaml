@@ -1,0 +1,34 @@
+# Controller
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: servicebinding-controller-manager
+  namespace: servicebinding-system
+spec:
+  replicas: 1
+status:
+  readyReplicas: 1 
+
+# Image Pull Secret
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: canonical-registry-credentials
+  namespace: servicebinding-system
+  annotations:
+    secretgen.carvel.dev/image-pull-secret: ""
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: e30K
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: servicebinding-system
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: canonical-registry-credentials

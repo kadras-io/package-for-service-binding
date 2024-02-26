@@ -1,0 +1,40 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: controlled-resource
+  namespace: tests
+type: Opaque
+stringData:
+  target: "service binding"
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: controlled-resource
+  namespace: tests
+spec:
+  template:
+    spec:
+      containers:
+        - image: gcr.io/knative-samples/helloworld-go
+---
+apiVersion: servicebinding.io/v1beta1
+kind: ServiceBinding
+metadata:
+  name: controlled-resource
+  namespace: tests
+spec:
+  service:
+    apiVersion: v1
+    kind: Secret
+    name: controlled-resource
+  workload:
+    apiVersion: serving.knative.dev/v1
+    kind: Configuration
+    selector:
+      matchLabels:
+        serving.knative.dev/service: controlled-resource
+  env:
+  - name: TARGET
+    key: target

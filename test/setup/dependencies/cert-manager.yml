@@ -1,0 +1,28 @@
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: cert-manager
+  namespace: tests
+  annotations:
+    kapp.k14s.io/change-group: cert-manager
+    kapp.k14s.io/change-rule.serviceaccount: delete before deleting serviceaccount
+spec:
+  serviceAccountName: kadras-install-sa
+  packageRef:
+    refName: cert-manager.packages.kadras.io
+    versionSelection:
+      constraints: 1.14.3
+  values:
+    - secretRef:
+        name: cert-manager-values
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cert-manager-values
+  namespace: tests
+stringData:
+  values.yaml: |
+    # Default

@@ -1,0 +1,14 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - githubRelease:
+      disableAutoChecksumValidation: true
+      slug: servicebinding/runtime
+      tag: v0.7.0
+    includePaths:
+    - servicebinding-runtime-*.yaml
+    - servicebinding-workloadresourcemappings-*.yaml
+    path: .
+  path: config/upstream
+kind: Config
+minimumRequiredVersion: ""

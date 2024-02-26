@@ -1,0 +1,18 @@
+---
+apiVersion: serving.knative.dev/v1
+kind: Configuration
+metadata:
+  namespace: tests
+spec:
+  template:
+    spec:
+      containers:
+        - name: user-container
+          env:
+            - name: SERVICE_BINDING_ROOT
+              value: /bindings
+            - name: TARGET
+              valueFrom:
+                secretKeyRef:
+                  key: target
+                  name: controlled-resource

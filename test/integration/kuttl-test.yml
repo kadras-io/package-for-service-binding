@@ -1,0 +1,30 @@
+apiVersion: kuttl.dev/v1beta1
+kind: TestSuite
+testDirs:
+- ./test/integration
+manifestDirs:
+- ./test/setup/assets
+parallel: 1
+startKIND: true
+kindContext: integration
+kindNodeCache: true
+timeout: 60
+artifactsDir: /tmp/kuttl-artifacts
+commands:
+  - script: |
+      kapp deploy -a kapp-controller -y \
+        -f https://github.com/carvel-dev/kapp-controller/releases/latest/download/release.yml
+  - script: |
+      kubectl config set-context --current --namespace=tests && \
+      kapp deploy -a cert-manager-package -y \
+        -f https://github.com/kadras-io/package-for-cert-manager/releases/download/v1.14.3/package.yml \
+        -f https://github.com/kadras-io/package-for-cert-manager/releases/download/v1.14.3/metadata.yml
+      kapp deploy -a contour-package -y \
+        -f https://github.com/kadras-io/package-for-contour/releases/download/v1.28.1/package.yml \
+        -f https://github.com/kadras-io/package-for-contour/releases/download/v1.28.1/metadata.yml
+      kapp deploy -a knative-serving-package -y \
+        -f https://github.com/kadras-io/package-for-knative-serving/releases/download/v1.13.1/package.yml \
+        -f https://github.com/kadras-io/package-for-knative-serving/releases/download/v1.13.1/metadata.yml
+  - script: |
+      kubectl config set-context --current --namespace=tests && \
+      kapp deploy -a dependencies -y -f ./test/setup/dependencies
