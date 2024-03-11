@@ -23,7 +23,7 @@ A Carvel package for [Service Binding](https://servicebinding.io), a standard an
 
 ### Dependencies
 
-Service Binding requires [cert-manager](https://github.com/kadras-io/package-for-cert-manager). You can install them from the [Kadras package repository](https://github.com/kadras-io/kadras-packages).
+Service Binding requires [cert-manager](https://github.com/kadras-io/package-for-cert-manager). You can install it from the [Kadras package repository](https://github.com/kadras-io/kadras-packages).
 
 ### Installation
 
@@ -32,15 +32,15 @@ Add the Kadras [package repository](https://github.com/kadras-io/kadras-packages
   ```shell
   kctrl package repository add -r kadras-packages \
     --url ghcr.io/kadras-io/kadras-packages \
-    -n kadras-packages --create-namespace
+    -n kadras-system --create-namespace
   ```
 
 <details><summary>Installation without package repository</summary>
 The recommended way of installing the Service Binding package is via the Kadras <a href="https://github.com/kadras-io/kadras-packages">package repository</a>. If you prefer not using the repository, you can add the package definition directly using <a href="https://carvel.dev/kapp/docs/latest/install"><code>kapp</code></a> or <code>kubectl</code>.
 
   ```shell
-  kubectl create namespace kadras-packages
-  kapp deploy -a service-binding-package -n kadras-packages -y \
+  kubectl create namespace kadras-system
+  kapp deploy -a service-binding-package -n kadras-system -y \
     -f https://github.com/kadras-io/package-for-service-binding/releases/latest/download/metadata.yml \
     -f https://github.com/kadras-io/package-for-service-binding/releases/latest/download/package.yml
   ```
@@ -52,20 +52,20 @@ Install the Service Binding package:
   kctrl package install -i service-binding \
     -p service-binding.packages.kadras.io \
     -v ${VERSION} \
-    -n kadras-packages
+    -n kadras-system
   ```
 
 > **Note**
 > You can find the `${VERSION}` value by retrieving the list of package versions available in the Kadras package repository installed on your cluster.
 > 
 >   ```shell
->   kctrl package available list -p service-binding.packages.kadras.io -n kadras-packages
+>   kctrl package available list -p service-binding.packages.kadras.io -n kadras-system
 >   ```
 
 Verify the installed packages and their status:
 
   ```shell
-  kctrl package installed list -n kadras-packages
+  kctrl package installed list -n kadras-system
   ```
 
 ## 📙&nbsp; Documentation
