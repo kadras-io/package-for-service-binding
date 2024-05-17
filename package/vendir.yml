@@ -4,7 +4,7 @@ directories:
   - githubRelease:
       disableAutoChecksumValidation: true
       slug: servicebinding/runtime
-      tag: v0.7.0
+      tag: v0.9.0
     includePaths:
     - servicebinding-runtime-*.yaml
     - servicebinding-workloadresourcemappings-*.yaml
