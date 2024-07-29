@@ -2,8 +2,8 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - githubRelease:
-      tag: v0.9.0
-      url: https://api.github.com/repos/servicebinding/runtime/releases/155781958
+      tag: v1.0.0
+      url: https://api.github.com/repos/servicebinding/runtime/releases/165665063
     path: .
   path: config/upstream
 kind: LockConfig
