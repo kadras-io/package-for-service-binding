@@ -12,7 +12,7 @@ spec:
   packageRef:
     refName: cert-manager.packages.kadras.io
     versionSelection:
-      constraints: 1.16.2
+      constraints: 1.17.1
   values:
     - secretRef:
         name: cert-manager-values
