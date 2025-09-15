@@ -20,11 +20,11 @@ commands:
         -f https://github.com/kadras-io/package-for-cert-manager/releases/download/v1.18.2/package.yml \
         -f https://github.com/kadras-io/package-for-cert-manager/releases/download/v1.18.2/metadata.yml
       kapp deploy -a contour-package -y \
-        -f https://github.com/kadras-io/package-for-contour/releases/download/v1.32.0/package.yml \
-        -f https://github.com/kadras-io/package-for-contour/releases/download/v1.32.0/metadata.yml
+        -f https://github.com/kadras-io/package-for-contour/releases/download/v1.33.0/package.yml \
+        -f https://github.com/kadras-io/package-for-contour/releases/download/v1.33.0/metadata.yml
       kapp deploy -a knative-serving-package -y \
-        -f https://github.com/kadras-io/package-for-knative-serving/releases/download/v1.19.0/package.yml \
-        -f https://github.com/kadras-io/package-for-knative-serving/releases/download/v1.19.0/metadata.yml
+        -f https://github.com/kadras-io/package-for-knative-serving/releases/download/v1.19.5/package.yml \
+        -f https://github.com/kadras-io/package-for-knative-serving/releases/download/v1.19.5/metadata.yml
   - script: |
       kubectl config set-context --current --namespace=tests && \
       kapp deploy -a dependencies -y -f ./test/setup/dependencies
